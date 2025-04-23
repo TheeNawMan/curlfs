@@ -3,7 +3,7 @@ name: Build and Release HTTP Version
 on:
   push:
     tags:
-      - 'v*' # e.g. v1.0.0
+      - 'main'
 
 jobs:
   build-release:
