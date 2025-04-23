@@ -2,7 +2,7 @@ name: Build and Release HTTP Version
 
 on:
   push:
-    tags:
+    branches:
       - 'main'
 
 jobs:
