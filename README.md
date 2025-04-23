@@ -1,13 +1,13 @@
 CURLFS is a lightweight, cross-platform file server written in Go. It allows users to upload and download files via HTTP or HTTPS using simple curl commands. The server automatically serves over HTTPS if TLS certificates are present, falling back to HTTP otherwise.
 
-🚀 Features
+### Features
 	•	File Serving: Serve files from the current directory.
 	•	File Uploading: Upload files via POST requests.
 	•	HTTPS Support: Automatically uses HTTPS if cert.pem and key.pem are available.
 	•	HTTP Fallback: Falls back to HTTP if TLS certificates are missing.
 	•	Cross-Platform: Build for multiple operating systems using the provided Makefile.
 
-🛠️ Installation
+### Installation
 
 ### Prerequisites
 	•	Go installed on your system.
@@ -27,7 +27,7 @@ make build
 ```
 Binaries will be placed in the build/ directory.
 
-🔒 HTTPS Configuration
+### HTTPS Configuration
 
 To enable HTTPS:
 	1. ```openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes```
@@ -36,7 +36,7 @@ To enable HTTPS:
 
 The server will listen on port 8443 for HTTPS. If the certificates are not found, it will default to HTTP on port 8080.
 
-📂 Usage
+### Usage
 
 Start the Server
 
@@ -64,12 +64,12 @@ curl http://localhost:8080/yourfile.txt -O
 ```
 Note: The -k flag is used to allow connections to SSL sites without certs signed by a trusted CA.
 
-📌 Notes
+### Notes
 	•	All files are served and saved in the same directory the server runs from.
 	•	Maximum upload size is 10MB (modifiable in the code).
 	•	Ensure port 8443 or 8080 is open and not blocked by firewalls.
 
-🛠️ Customization
+### Customization
 
 You can change:
 	•	Default ports (httpsPort, httpPort)
