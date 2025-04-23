@@ -1,0 +1,37 @@
+name: Build and Release HTTP Version
+
+on:
+  push:
+    tags:
+      - 'v*' # e.g. v1.0.0
+
+jobs:
+  build-release:
+    name: Build HTTP Server Binary
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.22'
+
+      - name: Build HTTP Binary
+        run: |
+          mkdir -p dist
+          GOOS=linux GOARCH=amd64 go build -o dist/curlfs-linux-amd64 main.go
+          GOOS=linux GOARCH=arm64 go build -o dist/curlfs-linux-arm64 main.go
+          GOOS=windows GOARCH=amd64 go build -o dist/curlfs-windows-amd64.exe main.go
+          GOOS=windows GOARCH=arm64 go build -o dist/curlfs-windows-arm64.exe main.go
+          GOOS=darwin GOARCH=amd64 go build -o dist/curlfs-darwin-amd64 main.go
+          GOOS=darwin GOARCH=arm64 go build -o dist/curlfs-darwin-arm64 main.go
+
+      - name: Upload Release Assets
+        uses: softprops/action-gh-release@v1
+        with:
+          files: dist/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
