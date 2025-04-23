@@ -31,8 +31,8 @@ Binaries will be placed in the build/ directory.
 
 To enable HTTPS:
 	1. ```openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes```
-	2.	Place your cert.pem and key.pem files in the same directory as the executable.
-	3.	Start the server ```./curlfs```
+ 	2. Place your cert.pem and key.pem files in the same directory as the executable.
+	3. Start the server ```./curlfs```
 
 The server will listen on port 8443 for HTTPS. If the certificates are not found, it will default to HTTP on port 8080.
 
